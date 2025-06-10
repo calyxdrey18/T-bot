@@ -6,243 +6,195 @@
   <title>Calyx-MD-Pair Code Generator</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/> 
   <style>
-      :root {
-  --primary-color: black;
-  --secondary-color: grey;
-  --accent-color: #f0f0f0;
-  --text-color: white;
-  --background-color: black;
-  --hover-color: #f5f5f5;
-  --border-color: springgreen;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--background-color);
-  color: var(--text-color);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-}
-
-.container {
-  width: 100%;
-  max-width: 400px;
-  background: black;
-  color: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 0 30px rgba(10, 255, 157, 8);
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 16px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: white;
-  box-shadow: 0 0 15px rgba(0, 255, 157, 1);
-}
-
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: springgreen;
-}
-
-.subtitle {
-  font-size: 15px;
-  color: white;
-  margin-bottom: 20px;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.social-icons a {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 18px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.social-icons a.youtube { background: #FF0000; }
-.social-icons a.telegram { background: #0088cc; }
-.social-icons a.whatsapp { background: #0cfa10; }
-.social-icons a.github { background: #333; }
-
-.social-icons a:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  font-size: 13px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 12px;
-  border: 1.5px solid rgba(0, 255, 157, 3);
-  border-radius: 12px;
-  background: lavender;
-  color: black;
-  font-size: 15px;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-}
-
-.generate-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--primary-color);
-  border: 1px solid lime;
-  box-shadow: 0 0 15px rgba(0, 255, 157, 3);
-  border-radius: 12px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 16px;
-}
-
-.generate-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.code-display {
-  background: lavender;
-  padding: 12px;
-  border-radius: 12px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid var(--border-color);
-}
-
-.copy-btn {
-  width: 100%;
-  padding: 12px;
-  background: black;
-  border: 1.5px solid var(--border-color);
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 0 15px rgba(0, 255, 157, 3);
-}
-
-.copy-btn:hover {
-  background: var(--background-color);
-  border-color: var(--primary-color);
-}
-
-.success-message {
-  color: #000aff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 16px;
-}
-
-.error-message {
-  color: #e74c3c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14px;
-}
-
-.loading {
-  display: none;
-  text-align: center;
-  margin: 16px 0;
-  color: springgreen;
-}
-
-.loading i {
-  color: springgreen;
-  font-size: 24px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
-  color: white;
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .code-display {
-    font-size: 16px;
-    min-height: 50px;
-  }
-}
-
+    :root {
+      --primary-color: black;
+      --secondary-color: grey;
+      --accent-color: #f0f0f0;
+      --text-color: white;
+      --background-color: black;
+      --hover-color: #f5f5f5;
+      --border-color: springgreen;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: black;
+      color: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 0 30px rgba(10, 255, 157, 0.8);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 255, 157, 1);
+    }
+    .title { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: springgreen; }
+    .subtitle { font-size: 15px; color: white; margin-bottom: 20px; }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .social-icons a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-icons a.youtube { background: #FF0000; }
+    .social-icons a.telegram { background: #0088cc; }
+    .social-icons a.whatsapp { background: #0cfa10; }
+    .social-icons a.github { background: #333; }
+    .social-icons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .input-group { margin-bottom: 20px; }
+    .input-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 13px;
+    }
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid rgba(0, 255, 157, 0.3);
+      border-radius: 12px;
+      background: lavender;
+      color: black;
+      font-size: 15px;
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+    .generate-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
+      border: 1px solid lime;
+      box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+      border-radius: 12px;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 16px;
+    }
+    .generate-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .code-display {
+      background: lavender;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border-color);
+      color: black;
+    }
+    .copy-btn {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+      color: white;
+    }
+    .copy-btn:hover {
+      background: var(--background-color);
+      border-color: var(--primary-color);
+    }
+    .success-message {
+      color: #000aff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 16px;
+    }
+    .error-message {
+      color: #e74c3c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 16px 0;
+      color: springgreen;
+    }
+    .loading i {
+      color: springgreen;
+      font-size: 24px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: white;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 20px; border-radius: 12px; }
+      .code-display { font-size: 16px; min-height: 50px; }
+    }
   </style>
 </head>
 <body>
@@ -253,50 +205,29 @@ body {
       <p class="subtitle">Generate your WhatsApp pair code</p>
       <div class="social-icons">
         <a href="https://www.youtube.com/@CalyxDrey?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
-        <a href="https://t.me/calyx_drey_hacks" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://t.me/haxk_em" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
         <a href="https://whatsapp.com/channel/0029VagE9oHDp2Q34xE8S22c" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://github.com/calyxdrey18/Calyx-MD:V2" target="_blank" class="github"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/calyxdrey18/Calyx-MD-V2" target="_blank" class="github"><i class="fab fa-github"></i></a>
       </div>
     </div>
 
     <form id="pairCodeForm">
       <div class="input-group">
-        <label class="input-label" for="mobileNumber">Enter your WhatsApp number with country code</label>
-        <input
-          type="text"
-          id="mobileNumber"
-          name="number"
-          class="input-field"
-          placeholder="+263716558758"
-          pattern="[+][0-9]{10,}"
-          title="Please enter country code starting with + followed by number"
-          required
-        />
+        <label class="input-label" for="mobileNumber">Enter your WhatsApp number</label>
+        <input type="number" id="mobileNumber" name="number" class="input-field" placeholder="263716-----8" pattern="^\+?[0-9]{10,}$" required />
       </div>
-
-      <button type="submit" class="generate-btn">
-        <i class="fas fa-key"></i> Generate Pair Code
-      </button>
+      <button type="submit" class="generate-btn"><i class="fas fa-key"></i> Generate Pair Code</button>
     </form>
 
-    <div class="loading" id="loading" style="display:none;">
-      <i class="fas fa-spinner"></i>
-    </div>
-
-    <div class="code-display" id="codeDisplay" style="color: black">
-      Your pair code will appear here
-    </div>
-
-    <button class="copy-btn" id="copy" style="color: white;"onclick="copyCode()" >
-      <i class="fas fa-copy"></i> Copy Code
-    </button>
+    <div class="loading" id="loading"><i class="fas fa-spinner"></i></div>
+    <div class="code-display" id="codeDisplay">Your pair code will appear here</div>
+    <button class="copy-btn" id="copy" onclick="copyCode()"><i class="fas fa-copy"></i> Copy Code</button>
 
     <div class="footer">
       <p>© 2025 Calyx-Drey | Calyx-MD v2</p>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
     const form = document.getElementById('pairCodeForm');
     const loading = document.getElementById('loading');
@@ -305,9 +236,13 @@ body {
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const numberInput = form.number.value.trim();
-      if (!numberInput) {
-        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Please enter your WhatsApp number</div>';
+      let numberInput = form.number.value.trim();
+
+      // Auto-add '+' if missing
+      if (!numberInput.startsWith('+')) numberInput = '+' + numberInput;
+
+      if (!/^\+\d{10,}$/.test(numberInput)) {
+        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Invalid number format</div>';
         return;
       }
 
@@ -316,13 +251,13 @@ body {
       copyBtn.disabled = true;
 
       try {
-        const apiUrl = `https://knight-bot-paircode.onrender.com/code?number=${encodeURIComponent(numberInput.replace(/[^0-9]/g, ''))}`;
-        
-        const response = await axios.get(apiUrl);
+        const sanitized = numberInput.replace(/[^0-9]/g, '');
+        const apiUrl = `https://corsproxy.io/?https://knight-bot-paircode.onrender.com/code?number=${sanitized}`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-        // Assuming response.data.code contains the code
-        if (response.data.code) {
-          codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${response.data.code}</div>`;
+        if (data.code) {
+          codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${data.code}</div>`;
           copyBtn.disabled = false;
         } else {
           codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Code not received from API</div>';
@@ -336,15 +271,12 @@ body {
     });
 
     function copyCode() {
-      const text = codeDisplay.innerText.replace('CODE: ', '');
+      const text = codeDisplay.innerText.replace('CODE: ', '').trim();
       if (!text) return;
-
       navigator.clipboard.writeText(text).then(() => {
-        const originalText = copyBtn.innerHTML;
+        const original = copyBtn.innerHTML;
         copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        setTimeout(() => {
-          copyBtn.innerHTML = originalText;
-        }, 2000);
+        setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
       });
     }
   </script>
